@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>WorldClim global climate projections</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.0/mapbox-gl-geocoder.css' rel='stylesheet' />
+  <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+  <link href='/css/site.css' rel='stylesheet' />
+</head>
+
+<body class='fill-dark'>
+  <div id='map' class='map'></div>
+
+  <div class='sidebar pin-topright z10 pad1'>
+    <div class='sidebar-inner fill-darken2 dark round pad2y'>
+      <header class='pad2x space-bottom1'>
+        <h3 class='space-bottom1'>WorldClim<br /> Global climate projections</h3>
+        <div class='quiet prose'>
+          <p>What areas are as hot as the marker is? What areas are as hot right now as the marker will be in 2050 or 2070? Drag the marker to explore.</p>
+        </div>
+      </header>
+      <div class='pad2x'>
+        <h4 id='location' class='space-bottom0 truncate block'></h4>
+        <div id='legend' class='legend mobile-cols clearfix'></div>
+        <small class='micro space-top1 block'>Mean monthly max temperature</small>
+      </div>
+    </div>
+  </div>
+
+  <a class='pin-bottomleft z1 pad1' target='_blank' href='https:/codeforafrica.org/'>
+    <img src='/img/c4a-white-small.png' alt='Code for Africa' style="height: 30px;" />
+  </a>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.0/mapbox-gl-geocoder.js'></script>
+  <script src='/js/mapbox-sdk.min.js'></script>
+  <script src='/js/site.js'></script>
+</body>
+</html>
+
