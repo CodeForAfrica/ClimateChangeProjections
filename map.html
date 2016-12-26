@@ -1,46 +1,72 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8' />
-  <title>WorldClim global climate projections</title>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.css' rel='stylesheet' />
-  <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.0/mapbox-gl-geocoder.css' rel='stylesheet' />
-  <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
-  <link href='/css/site.css' rel='stylesheet' />
-</head>
+---
+---
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{ site.title }} | Map</title>
+    <meta name="description" content="{{ site.description }}">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-<body class='fill-dark'>
-  <div id='map' class='map'></div>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    
+    <meta property="og:title" content="{{ site.title }}" />
+    <meta property="og:description" content="{{ site.description }}" />
+    <meta property="og:image" content="{{ site.url }}/preview.png" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="fb:app_id" content="193758347662800" />
+    
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.0/mapbox-gl-geocoder.css' rel='stylesheet' />
+    <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+    <link href='/css/site.css' rel='stylesheet' />
+  </head>
 
-  <div class='sidebar pin-topright z10 pad1'>
-    <div class='sidebar-inner fill-darken2 dark round pad2y'>
-      <header class='pad2x space-bottom1'>
-        <h3 class='space-bottom1'>WorldClim<br /> Global climate projections</h3>
-        <div class='quiet prose'>
-          <p>What areas are as hot as the marker is? What areas are as hot right now as the marker will be in 2050 or 2070? Drag the marker to explore.</p>
-        </div>
-      </header>
-      <div class='pad2x'>
-        <h4 id='location' class='space-bottom0 truncate block'></h4>
-        <div id='legend' class='legend mobile-cols clearfix'></div>
-        <small class='micro space-top1 block'>Mean monthly max temperature</small>
-        <small><a onclick="ClimateChangeProjections.embedBox.toggle()" style="cursor: pointer;">EMBED THIS MAP</a></small>
-        <div style="background-color: #eee; color: #333; word-break: break-all; padding: 2px 5px 5px; border-radius: 3px; display: none;" id="embed-box">
-          <code>&lt;iframe src="https://climatechange.codeforafrica.org/map.html" width="100%" height="600px"&gt;&lt;/iframe&gt;</code>
+  <body class='fill-dark'>
+    <div id='map' class='map'></div>
+
+    <div class='sidebar pin-topright z10 pad1'>
+      <div class='sidebar-inner fill-darken2 dark round pad2y'>
+        <header class='pad2x space-bottom1'>
+          <h3 class='space-bottom1'>WorldClim<br /> Global climate projections</h3>
+          <div class='quiet prose'>
+            <p>What areas are as hot as the marker is? What areas are as hot right now as the marker will be in 2050 or 2070? Drag the marker to explore.</p>
+          </div>
+        </header>
+        <div class='pad2x'>
+          <h4 id='location' class='space-bottom0 truncate block'></h4>
+          <div id='legend' class='legend mobile-cols clearfix'></div>
+          <small class='micro space-top1 block'>Mean monthly max temperature</small>
+          <small><a onclick="ClimateChangeProjections.embedBox.toggle()" style="cursor: pointer;">EMBED THIS MAP</a></small>
+          <div style="background-color: #eee; color: #333; word-break: break-all; padding: 2px 5px 5px; border-radius: 3px; display: none;" id="embed-box">
+            <code>&lt;iframe src="https://climatechange.codeforafrica.org/map.html" width="100%" height="600px"&gt;&lt;/iframe&gt;</code>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <a class='pin-bottomleft z1 pad1' target='_blank' href='https:/codeforafrica.org/'>
-    <img src='/img/c4a-white-small.png' alt='Code for Africa' style="height: 30px;" />
-  </a>
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.js'></script>
-  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.0/mapbox-gl-geocoder.js'></script>
-  <script src='/js/mapbox-sdk.min.js'></script>
-  <script src='/js/utilities.js'></script>
-  <script src='/js/site.js'></script>
-</body>
+    <a class='pin-bottomleft z1 pad1' target='_blank' href='https:/codeforafrica.org/'>
+      <img src='/img/c4a-white-small.png' alt='Code for Africa' style="height: 30px;" />
+    </a>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.21.0/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.0/mapbox-gl-geocoder.js'></script>
+    <script src='/js/mapbox-sdk.min.js'></script>
+    <script src='/js/utilities.js'></script>
+    <script src='/js/site.js'></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','{{ site.google_analytics }}','auto');ga('send','pageview');
+    </script>
+  </body>
 </html>
 

@@ -12,7 +12,7 @@ var ClimateChangeProjections = {
     zoom: 1.5
   },
   point: {
-    coordinates: [37.908818734483155, 0.3051933453207569]
+    coordinates: [36.832800445739764,-1.2847089229405242]
   }
 }
 if (getUrlParameters('center', '', true) != false) {
