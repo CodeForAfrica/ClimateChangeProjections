@@ -4,11 +4,42 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWZvcmFmcmljYSIsImEiOiJzbUlkVDRNIn0.JUlW50UqJRZ3em2BKUBJIg';
 var isDragging, isCursorOverPoint, storedPopupText;
 
+
+// Set map co-ordinates from URL
+var ClimateChangeProjections = {
+  map: {
+    center: [0,0],
+    zoom: 1.5
+  },
+  point: {
+    coordinates: [37.908818734483155, 0.3051933453207569]
+  }
+}
+if (getUrlParameters('center', '', true) != false) {
+  var map_ctr = getUrlParameters('center', '', true).split(',');
+  var map_zoom = getUrlParameters('zoom', '', true);
+  ClimateChangeProjections.map.center = [Number(map_ctr[0]), Number(map_ctr[1])];
+  ClimateChangeProjections.map.zoom = Number(map_zoom);
+};
+if (getUrlParameters('point', '', true) != false) {
+  var point = getUrlParameters('point', '', true).split(',');
+  ClimateChangeProjections.point.coordinates = [Number(point[0]), Number(point[1])];
+};
+ClimateChangeProjections.setUrlParameters = function () {
+  window.location.hash = setUrlParameters('center', map.getCenter().lng + ',' + map.getCenter().lat);
+  window.location.hash = setUrlParameters('zoom', map.getZoom());
+  window.location.hash = setUrlParameters('point', geojson.features[0].geometry.coordinates.join(','));
+  console.log('happened');
+  return true;
+};
+
+
+
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/dark-v9',
-  center: [0,0],
-  zoom: 1.5
+  center: ClimateChangeProjections.map.center,
+  zoom: ClimateChangeProjections.map.zoom
 });
 
 if (window.location.search.indexOf('embed') !== -1) map.scrollZoom.disable();
@@ -33,7 +64,7 @@ var geojson = {
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [37.908818734483155, 0.3051933453207569] // Toledo, Spain
+      coordinates: ClimateChangeProjections.point.coordinates
     }
   }]
 };
@@ -114,6 +145,10 @@ map.on('load', function() {
   map.on('mousedown', dragDown);
   map.on('touchstart', move);
   map.on('touchstart', dragDown);
+  map.on('zoomend', ClimateChangeProjections.setUrlParameters);
+  map.on('dragend', ClimateChangeProjections.setUrlParameters);
+  map.on('mouseup', ClimateChangeProjections.setUrlParameters);
+  map.on('touchend', ClimateChangeProjections.setUrlParameters);
 
   // Initialize the viz
   var initialCoords = geojson.features[0].geometry.coordinates;
