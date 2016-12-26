@@ -29,7 +29,6 @@ ClimateChangeProjections.setUrlParameters = function () {
   window.location.hash = setUrlParameters('center', map.getCenter().lng + ',' + map.getCenter().lat);
   window.location.hash = setUrlParameters('zoom', map.getZoom());
   window.location.hash = setUrlParameters('point', geojson.features[0].geometry.coordinates.join(','));
-  console.log('happened');
   return true;
 };
 
