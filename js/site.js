@@ -29,9 +29,19 @@ ClimateChangeProjections.setUrlParameters = function () {
   window.location.hash = setUrlParameters('center', map.getCenter().lng + ',' + map.getCenter().lat);
   window.location.hash = setUrlParameters('zoom', map.getZoom());
   window.location.hash = setUrlParameters('point', geojson.features[0].geometry.coordinates.join(','));
-  return true;
+  ClimateChangeProjections.embedBox.setUrl();
 };
-
+ClimateChangeProjections.embedBox = {
+  is_open: false,
+  toggle: function() {
+    document.getElementById('embed-box').style.display = (this.is_open) ? 'none' : 'block';
+    this.is_open = (this.is_open) ? false : true;
+  },
+  setUrl: function() {
+    document.getElementById('embed-box').innerHTML = '<code>&lt;iframe src="'+window.location.href+'" width="100%" height="600px" &gt;&lt;/iframe&gt;</code>'
+  }
+}
+ClimateChangeProjections.embedBox.setUrl();
 
 
 var map = new mapboxgl.Map({
