@@ -3,11 +3,11 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    David Lemayian -- Lead Tech -- @DavidLemayian
 
 # THANKS
 
-    <name>
+    Damon Burgett
 
 # TECHNOLOGY COLOPHON
 
