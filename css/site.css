@@ -5,15 +5,15 @@
   top:0;
   bottom:0;
   right:0;
-  }
+}
 .sidebar {
   width:260px;
-  }
+}
 
 .legend-value {
   position:relative;
   top:5px;
-  }
+}
 
 /* Mapboxgl overrides */
 /* Attribution */
@@ -23,7 +23,9 @@
 .mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate {
   background-image:url(img/geolocate-icon.svg);
   background-repeat:no-repeat;
-  }
+}
+
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl-logo { display: none; }
 
 /* Popup */
 .mapboxgl-popup-content {
@@ -31,7 +33,7 @@
   color:#fff;
   padding:10px;
   font-weight:bold;
-  }
+}
 .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip { border-top-color:#404040; }
@@ -52,12 +54,12 @@
     bottom:0;
     height:40%;
     z-index:10;
-    }
+  }
   .sidebar-inner {
     height:100%;
     border-radius:0;
-    }
+  }
   .sidebar-inner > * {
     border-radius:0;
-    }
+  }
 }

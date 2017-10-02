@@ -54,17 +54,15 @@ var map = new mapboxgl.Map({
 if (window.location.search.indexOf('embed') !== -1) map.scrollZoom.disable();
 var client = new MapboxClient(mapboxgl.accessToken);
 
-var geocoder = new mapboxgl.Geocoder({
+var geocoder = new MapboxGeocoder({
   placeholder: 'Search a location',
   flyTo: false,
-  position: 'top-left'
+  accessToken: mapboxgl.accessToken
 });
 
-map.addControl(geocoder);
+map.addControl(geocoder, 'top-left');
 
-map.addControl(new mapboxgl.Navigation({
-  position: 'top-left'
-}));
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
 // Used for the draggable point on the map.
 var geojson = {
