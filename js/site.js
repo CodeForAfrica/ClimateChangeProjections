@@ -163,6 +163,7 @@ map.on('load', function() {
   window.setTimeout(function() {
     geolocatePoint(initialCoords);
     generateVisualization(map.project(initialCoords));
+    setCurrentLocationAsCenter(map)
   }, 2000);
 });
 
@@ -332,6 +333,22 @@ function geolocatePoint(coords) {
   }).catch(function(err) {
     console.warn(err);
   });
+}
+
+function setCurrentLocationAsCenter(map) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+
+  function showPosition(position) {
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
+
+      console.log("lat: " + lat + ", lon: " + lon);
+
+      var center = new mapboxgl.LngLat(lon,lat);
+      map.flyTo({center: center, zoom: 8});
+  }
 }
 
 // Append custom attribution
