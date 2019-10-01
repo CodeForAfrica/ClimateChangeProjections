@@ -51,7 +51,15 @@ var map = new mapboxgl.Map({
   zoom: ClimateChangeProjections.map.zoom
 });
 
-if (window.location.search.indexOf('embed') !== -1) map.scrollZoom.disable();
+// Disable scroll zooming in iframe
+if ( window.location !== window.parent.location ) {
+  // The page is in an iframe
+  map.scrollZoom.disable();
+} else {
+  // The page is not in an iframe
+  map.scrollZoom.enable();
+}
+
 var client = new MapboxClient(mapboxgl.accessToken);
 
 var geocoder = new MapboxGeocoder({
