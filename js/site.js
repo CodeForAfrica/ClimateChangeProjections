@@ -56,6 +56,7 @@ var client = new MapboxClient(mapboxgl.accessToken);
 
 var geocoder = new MapboxGeocoder({
   placeholder: 'Search a location',
+  hash: true,
   flyTo: false,
   accessToken: mapboxgl.accessToken
 });
