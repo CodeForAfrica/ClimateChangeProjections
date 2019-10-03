@@ -238,6 +238,8 @@ geocoder.on('result', function(e) {
 });
 
 function generateVisualization(pos) {
+  document.getElementById('loader-parent').className = 'hidden';
+
   var features = map.queryRenderedFeatures(pos, {
     layers: ['temperature2016']
   });
