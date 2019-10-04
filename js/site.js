@@ -53,11 +53,7 @@ var map = new mapboxgl.Map({
 
 // Disable scroll zooming in iframe
 if ( window.location !== window.parent.location ) {
-  // The page is in an iframe
   map.scrollZoom.disable();
-} else {
-  // The page is not in an iframe
-  map.scrollZoom.enable();
 }
 
 var client = new MapboxClient(mapboxgl.accessToken);
