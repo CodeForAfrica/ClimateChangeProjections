@@ -48,7 +48,7 @@ var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/dark-v9',
   center: ClimateChangeProjections.map.center,
-  zoom: ClimateChangeProjections.map.zoom
+  zoom: ClimateChangeProjections.map.zoom,
 });
 
 // Disable scroll zooming in iframe
@@ -60,7 +60,7 @@ var client = new MapboxClient(mapboxgl.accessToken);
 
 var geocoder = new MapboxGeocoder({
   placeholder: 'Search a location',
-  flyTo: false,
+  flyTo: true,
   accessToken: mapboxgl.accessToken
 });
 
