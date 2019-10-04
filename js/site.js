@@ -51,7 +51,11 @@ var map = new mapboxgl.Map({
   zoom: ClimateChangeProjections.map.zoom
 });
 
-if (window.location.search.indexOf('embed') !== -1) map.scrollZoom.disable();
+// Disable scroll zooming in iframe
+if ( window.location !== window.parent.location ) {
+  map.scrollZoom.disable();
+}
+
 var client = new MapboxClient(mapboxgl.accessToken);
 
 var geocoder = new MapboxGeocoder({
@@ -239,6 +243,8 @@ geocoder.on('result', function(e) {
 });
 
 function generateVisualization(pos) {
+  document.getElementById('loader-parent').className = 'hidden';
+
   var features = map.queryRenderedFeatures(pos, {
     layers: ['temperature2016']
   });
