@@ -348,7 +348,7 @@ attribution.className = 'mapboxgl-ctrl-attrib mapboxgl-ctrl hide-mobile';
 var attrib = document.createElement('a');
 attrib.target = '_blank';
 attrib.textContent = 'Climate data WorldClim';
-attrib.href = 'http://www.worldclim.org/download/';
+attrib.href = 'http://www.worldclim.org/';
 
 attribution.appendChild(attrib);
 bottomContainer.appendChild(attribution);
