@@ -1,11 +1,9 @@
 'use strict';
 /* global mapboxgl MapboxClient */
 
+// Initialize variables and objects
 mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZWZvcmFmcmljYSIsImEiOiJzbUlkVDRNIn0.JUlW50UqJRZ3em2BKUBJIg';
 var isDragging, isCursorOverPoint, storedPopupText;
-
-
-// Set map co-ordinates from URL
 var ClimateChangeProjections = {
   map: {
     center: [0,0],
@@ -15,6 +13,8 @@ var ClimateChangeProjections = {
     coordinates: [36.832800445739764,-1.2847089229405242]
   }
 }
+
+// Set map co-ordinates from URL
 if (getUrlParameters('center', '', true) != false) {
   var map_ctr = getUrlParameters('center', '', true).split(',');
   var map_zoom = getUrlParameters('zoom', '', true);
@@ -25,12 +25,16 @@ if (getUrlParameters('point', '', true) != false) {
   var point = getUrlParameters('point', '', true).split(',');
   ClimateChangeProjections.point.coordinates = [Number(point[0]), Number(point[1])];
 };
+
+// URL setting
 ClimateChangeProjections.setUrlParameters = function () {
   window.location.hash = setUrlParameters('center', map.getCenter().lng + ',' + map.getCenter().lat);
   window.location.hash = setUrlParameters('zoom', map.getZoom());
   window.location.hash = setUrlParameters('point', geojson.features[0].geometry.coordinates.join(','));
   ClimateChangeProjections.embedBox.setUrl();
 };
+
+// Embed Box
 ClimateChangeProjections.embedBox = {
   is_open: false,
   toggle: function() {
@@ -44,6 +48,7 @@ ClimateChangeProjections.embedBox = {
 ClimateChangeProjections.embedBox.setUrl();
 
 
+// Create the map
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/dark-v9',
@@ -56,19 +61,24 @@ if ( window.location !== window.parent.location ) {
   map.scrollZoom.disable();
 }
 
+// Connect to Mapbox
 var client = new MapboxClient(mapboxgl.accessToken);
 
+// Create the geocoder
 var geocoder = new MapboxGeocoder({
   placeholder: 'Search a location',
-  flyTo: true,
+  flyTo: false,
   accessToken: mapboxgl.accessToken
 });
 
+// Add Geocoder to map
 map.addControl(geocoder, 'top-left');
 
+// Add zoom navigation to map
 map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
-// Used for the draggable point on the map.
+
+// Create the draggable point on the map
 var geojson = {
   type: 'FeatureCollection',
   features: [{
@@ -79,11 +89,12 @@ var geojson = {
     }
   }]
 };
-
+// Make sure popup on draggable point can't be closed
 var popup = new mapboxgl.Popup({
   closeButton: false,
   closeOnClick: false
 });
+
 
 map.on('load', function() {
 
@@ -167,7 +178,7 @@ map.on('load', function() {
   window.setTimeout(function() {
     geolocatePoint(initialCoords);
     generateVisualization(map.project(initialCoords));
-  }, 2000);
+  }, 1000);
 });
 
 function move(e) {
